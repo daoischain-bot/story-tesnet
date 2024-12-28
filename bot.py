@@ -17,8 +17,8 @@ a2 = 'https://odyssey.storyrpc.io'
 a3 = 1516
 a4 = Web3(Web3.HTTPProvider(a2))
 
-if not a4.isConnected():
-    print("Unable to connect to the RPC Server")
+if not a4.is_connected():
+    print("Unable to connect to the RPC server")
     exit()
 
 with open('sender.txt', 'r') as f1:
@@ -28,7 +28,7 @@ with open('sender.txt', 'r') as f1:
 with open('receivers.txt', 'r') as f2:
     a7 = [line.strip() for line in f2.readlines()]
 
-a5 = a4.toChecksumAddress(a5)
+a5 = a4.to_checksum_address(a5)
 
 print(Fore.BLUE + "Sender wallet address: " + a5)
 
@@ -48,21 +48,21 @@ while True:
 try:
     while True:
         a12 = a4.eth.get_balance(a5)
-        print(Fore.BLUE + "Account balance: " + f"{a4.fromWei(a12, 'ether')} IP")
+        print(Fore.BLUE + "Account balance: " + f"{a4.from_wei(a12, 'ether')} IP")
 
         if a8 == 'fixed':
             a9 = a10
         else:
             a9 = random.uniform(a10, a11)
         
-        a13 = a4.toWei(a9, 'ether')
+        a13 = a4.to_wei(a9, 'ether')
 
         a14 = random.uniform(1.01, 1.10)
         a15 = {
-            'to': a4.toChecksumAddress(random.choice(a7)),
+            'to': a4.to_checksum_address(random.choice(a7)),
             'value': a13,
             'gasPrice': int(a4.eth.gas_price * a14),
-            'nonce': a4.eth.getTransactionCount(a5),
+            'nonce': a4.eth.get_transaction_count(a5),
             'chainId': a3
         }
 
@@ -72,8 +72,8 @@ try:
         a17 = a16 * a15['gasPrice']
         a18 = a13 + a17
 
-        print(Fore.BLUE + "Total sent: " + f"{a4.fromWei(a18, 'ether')} IP")
-        print(Fore.BLUE + "Total gas fee: " + f"{a4.fromWei(a17, 'ether')} IP")
+        print(Fore.BLUE + "Total sent: " + f"{a4.from_wei(a18, 'ether')} IP")
+        print(Fore.BLUE + "Total gas fee: " + f"{a4.from_wei(a17, 'ether')} IP")
 
         if a12 < a18:
             print("Insufficient balance to cover gas fee and transaction value.")
@@ -82,8 +82,8 @@ try:
         a19 = a15['to']
         print(Fore.YELLOW + "Recipient wallet address: " + a19)
 
-        a20 = a4.eth.account.signTransaction(a15, a6)
-        a21 = a4.eth.sendRawTransaction(a20.rawTransaction)
+        a20 = a4.eth.account.sign_transaction(a15, a6)
+        a21 = a4.eth.send_raw_transaction(a20.raw_transaction)
 
         print(Fore.MAGENTA + "Transaction sent successfully with hash: " + a21.hex())
 
