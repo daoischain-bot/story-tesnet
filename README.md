@@ -19,8 +19,9 @@ Done all and Run with python3 bot.py
 - tmux -S mysession
 - python3 your_script.py
   
-2. Detach from the screen session (without stopping the script): Press Ctrl + B, then D.
+2. Detach from the screen session (without stopping the script): Press Ctrl + B, then D
 3. Reattach to the screen session (when you want to check on your script):
 - tmux attach -t mysession
-
+4. Stoping script press Ctrl + c
+  
 **Donate: 0x73725bd6684346cbf841cbfb6b7fc5be6b627f98**
