@@ -1,6 +1,6 @@
 This **Story Odyssey Protocol Tesnet** script can perform automatic transfers within a time range of 12 to 24 hours. Additionally, this script will also perform random token transfers with a range of token amounts that can be specified.
 
-install > Use Python 
+install > Use Python 3.10.12
 
 - git clone https://github.com/daoischain-bot/story-tesnet.git
 - pip install web3
